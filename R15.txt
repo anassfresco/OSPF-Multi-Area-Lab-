@@ -1,0 +1,115 @@
+R15#
+*Mar  1 04:08:30.062: %SYS-5-CONFIG_I: Configured from console by consoleWR
+Building configuration...
+[OK]
+R15#
+R15#
+R15#
+R15#
+R15#TER
+R15#TERminal LE
+R15#TERminal LEngth 0
+R15#HS
+R15#SH
+R15#SHow RUN
+R15#SHow RUNning-config 
+Building configuration...
+
+Current configuration : 920 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R15
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+!
+!
+ip cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface Ethernet1/0
+ ip address 10.0.15.1 255.255.255.0
+ half-duplex
+!
+interface Ethernet1/1
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet1/2
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet1/3
+ no ip address
+ shutdown
+ half-duplex
+!
+router ospf 1
+ router-id 15.15.15.15
+ log-adjacency-changes
+ area 4 stub
+ network 10.0.15.0 0.0.0.255 area 4
+!
+ip http server
+!
+ip forward-protocol nd
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+!
+!
+end

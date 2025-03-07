@@ -1,0 +1,115 @@
+SHow RUNning-config  
+Building configuration...
+
+Current configuration : 1343 bytes
+!
+! Last configuration change at 03:12:06 UTC Thu Mar 6 2025
+upgrade fpd auto
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R4
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 10.0.1.2 255.255.255.0
+ duplex half
+!
+interface Serial1/0
+ ip address 10.0.4.1 255.255.255.0
+ serial restart-delay 0
+!
+interface Serial1/1
+ ip address 10.0.5.2 255.255.255.0
+ serial restart-delay 0
+!
+interface Serial1/2
+ ip address 10.0.10.2 255.255.255.0
+ serial restart-delay 0
+!
+interface Serial1/3
+ ip address 10.0.7.2 255.255.255.0
+ serial restart-delay 0
+!
+router ospf 1
+ router-id 4.4.4.4
+ area 1 stub
+ area 2 nssa default-information-originate
+ area 3 virtual-link 12.12.12.12
+ network 10.0.1.0 0.0.0.255 area 0
+ network 10.0.4.0 0.0.0.255 area 0
+ network 10.0.5.0 0.0.0.255 area 1
+ network 10.0.7.0 0.0.0.255 area 2
+ network 10.0.10.0 0.0.0.255 area 3
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+mgcp profile default
+!
+!
+!
+gatekeeper
+ shutdown
+!
+!
+line con 0
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ login
+ transport input all
+!
+!
+end

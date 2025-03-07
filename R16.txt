@@ -1,0 +1,118 @@
+R16#WR
+Building configuration...
+[OK]
+R16#TER
+*Mar  1 04:10:12.750: %SYS-5-CONFIG_I: Configured from console by consoleM
+R16#TERMinal LE
+R16#TERMinal LEngth 0
+R16#SHO
+R16#SHOw RUN
+R16#SHOw RUNning-config 
+Building configuration...
+
+Current configuration : 1147 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R16
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+!
+!
+ip cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 10.0.17.2 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ ip address 10.0.16.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface Serial1/0
+ no ip address
+ shutdown
+ serial restart-delay 0
+ no fair-queue
+!
+interface Serial1/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial1/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+router eigrp 1
+ network 10.0.17.0 0.0.0.255
+ auto-summary
+ eigrp router-id 16.16.16.16
+!
+router ospf 1
+ router-id 16.16.16.16
+ log-adjacency-changes
+ area 5 nssa
+ redistribute eigrp 1 subnets
+ redistribute eigrp 100
+ redistribute eigrp 5
+ network 10.0.16.0 0.0.0.255 area 5
+!
+ip http server
+!
+ip forward-protocol nd
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+!
+!
+end

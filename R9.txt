@@ -1,0 +1,124 @@
+R9#WR
+Building configuration...
+[OK]
+R9#
+*Mar  1 03:57:53.663: %SYS-5-CONFIG_I: Configured from console by console
+R9#
+R9#
+R9#
+R9#
+R9#
+R9#
+R9#
+R9#
+R9#
+R9#
+R9#TER
+R9#TERminal LEN
+R9#TERminal LENgth 0
+R9#SHO
+R9#SHOw RUN
+R9#SHOw RUNning-config 
+Building configuration...
+
+Current configuration : 1094 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R9
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+!
+!
+ip cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 10.0.9.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface Ethernet1/0
+ ip address 172.16.0.1 255.255.255.252
+ half-duplex
+!
+interface Ethernet1/1
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet1/2
+ no ip address
+ shutdown
+ half-duplex
+!
+interface Ethernet1/3
+ no ip address
+ shutdown
+ half-duplex
+!
+router ospf 1
+ router-id 9.9.9.9
+ log-adjacency-changes
+ area 2 nssa
+ redistribute static subnets
+ network 10.0.9.0 0.0.0.255 area 2
+!
+ip http server
+!
+ip forward-protocol nd
+ip route 192.168.2.0 255.255.255.0 172.16.0.2
+ip route 192.168.3.0 255.255.255.0 172.16.0.2
+ip route 192.168.4.0 255.255.255.0 172.16.0.2
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+!
+!
+end
