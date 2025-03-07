@@ -1,4 +1,4 @@
-# OSPF Multi-Area Lab 🚀
+![OSPF Topology](https://github.com/anassfresco/OSPF-Multi-Area-Lab-/blob/main/LAB_OSPF.png?raw=true)
 
 ## Overview
 This lab simulates an **enterprise-grade OSPF (Open Shortest Path First) multi-area network**, integrating various routing concepts such as redundancy, security, and optimized traffic flow. The topology is designed to reflect real-world scenarios with multiple OSPF areas, VPN tunneling, and firewall integration.
